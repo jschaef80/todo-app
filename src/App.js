@@ -22,10 +22,15 @@ class App extends Component {
 
   formSubmit = event => {
     event.preventDefault()
-    console.log("THIS IS STATE***", this.state.items)
     this.setState({
       items : [...this.state.items, this.state.input],
       input: ''
+    })
+  }
+  
+  deleteTask = index => {
+    this.setState({
+      tasks: [...this.state.tasks.filter(task => task !== this.state.tasks)]
     })
   }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 function FirstComponent(props) {
-    console.log('firstcomp props', props.items)
+    console.log(props.items)
     return (
         <div>
             <ul>
