@@ -1,16 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function FirstComponent(props) {
-    console.log(props.items)
+class Item extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+          items: this.props.items,
+          isClicked: false
+        };
+    }
+
+    deleteItem = (index) => {
+        let todoItem = document.getElementById(index.index).innerText;
+        // console.log(todoItem);
+        console.log(this.state.items);
+        let remainingArray = this.state.items.filter(item => item !== todoItem)
+        console.log(remainingArray);
+        this.isClicked ? this.setState({isClicked: true}) : this.setState({isClicked: false});
+        this.setState({items : remainingArray});
+        
+    }
+
+    render (){
+        // console.log(this.props.items);
     return (
         <div>
             <ul>
-                {props.items.map((item, index)=>{
-                    return <li key={index}>{props.items[index]}</li>
+                {this.props.items.map((item, index)=>{
+                    return <li key={index}><div id={index}>{this.props.items[index]}</div><button onClick={() => this.deleteItem({index})}>delete</button></li>
                 })}
             </ul>
         </div>
     )
-}
+}}
 
-export default FirstComponent;
+export default Item;
